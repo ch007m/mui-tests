@@ -1,0 +1,334 @@
+{
+  "platforms": [
+    {
+      "platformKey": "io.quarkus.platform",
+      "name": "Quarkus Community Platform",
+      "streams": [
+        {
+          "id": "3.8",
+          "name": null,
+          "releases": [
+            {
+              "version": "3.8.2",
+              "memberBoms": [
+                {
+                  "groupId": "io.quarkus.platform",
+                  "artifactId": "quarkus-bom",
+                  "classifier": "",
+                  "type": "pom",
+                  "version": "3.8.2",
+                  "key": {
+                    "groupId": "io.quarkus.platform",
+                    "artifactId": "quarkus-bom",
+                    "classifier": "",
+                    "type": "pom"
+                  },
+                  "jar": false
+                },
+                {
+                  "groupId": "io.quarkus.platform",
+                  "artifactId": "quarkus-qpid-jms-bom",
+                  "classifier": "",
+                  "type": "pom",
+                  "version": "3.8.2",
+                  "key": {
+                    "groupId": "io.quarkus.platform",
+                    "artifactId": "quarkus-qpid-jms-bom",
+                    "classifier": "",
+                    "type": "pom"
+                  },
+                  "jar": false
+                },
+                {
+                  "groupId": "io.quarkus.platform",
+                  "artifactId": "quarkus-cassandra-bom",
+                  "classifier": "",
+                  "type": "pom",
+                  "version": "3.8.2",
+                  "key": {
+                    "groupId": "io.quarkus.platform",
+                    "artifactId": "quarkus-cassandra-bom",
+                    "classifier": "",
+                    "type": "pom"
+                  },
+                  "jar": false
+                },
+                {
+                  "groupId": "io.quarkus.platform",
+                  "artifactId": "quarkus-amazon-services-bom",
+                  "classifier": "",
+                  "type": "pom",
+                  "version": "3.8.2",
+                  "key": {
+                    "groupId": "io.quarkus.platform",
+                    "artifactId": "quarkus-amazon-services-bom",
+                    "classifier": "",
+                    "type": "pom"
+                  },
+                  "jar": false
+                },
+                {
+                  "groupId": "io.quarkus.platform",
+                  "artifactId": "quarkus-cxf-bom",
+                  "classifier": "",
+                  "type": "pom",
+                  "version": "3.8.2",
+                  "key": {
+                    "groupId": "io.quarkus.platform",
+                    "artifactId": "quarkus-cxf-bom",
+                    "classifier": "",
+                    "type": "pom"
+                  },
+                  "jar": false
+                },
+                {
+                  "groupId": "io.quarkus.platform",
+                  "artifactId": "quarkus-camel-bom",
+                  "classifier": "",
+                  "type": "pom",
+                  "version": "3.8.2",
+                  "key": {
+                    "groupId": "io.quarkus.platform",
+                    "artifactId": "quarkus-camel-bom",
+                    "classifier": "",
+                    "type": "pom"
+                  },
+                  "jar": false
+                },
+                {
+                  "groupId": "io.quarkus.platform",
+                  "artifactId": "quarkus-debezium-bom",
+                  "classifier": "",
+                  "type": "pom",
+                  "version": "3.8.2",
+                  "key": {
+                    "groupId": "io.quarkus.platform",
+                    "artifactId": "quarkus-debezium-bom",
+                    "classifier": "",
+                    "type": "pom"
+                  },
+                  "jar": false
+                },
+                {
+                  "groupId": "io.quarkus.platform",
+                  "artifactId": "quarkus-blaze-persistence-bom",
+                  "classifier": "",
+                  "type": "pom",
+                  "version": "3.8.2",
+                  "key": {
+                    "groupId": "io.quarkus.platform",
+                    "artifactId": "quarkus-blaze-persistence-bom",
+                    "classifier": "",
+                    "type": "pom"
+                  },
+                  "jar": false
+                },
+                {
+                  "groupId": "io.quarkus.platform",
+                  "artifactId": "quarkus-google-cloud-services-bom",
+                  "classifier": "",
+                  "type": "pom",
+                  "version": "3.8.2",
+                  "key": {
+                    "groupId": "io.quarkus.platform",
+                    "artifactId": "quarkus-google-cloud-services-bom",
+                    "classifier": "",
+                    "type": "pom"
+                  },
+                  "jar": false
+                },
+                {
+                  "groupId": "io.quarkus.platform",
+                  "artifactId": "quarkus-operator-sdk-bom",
+                  "classifier": "",
+                  "type": "pom",
+                  "version": "3.8.2",
+                  "key": {
+                    "groupId": "io.quarkus.platform",
+                    "artifactId": "quarkus-operator-sdk-bom",
+                    "classifier": "",
+                    "type": "pom"
+                  },
+                  "jar": false
+                }
+              ],
+              "quarkusCoreVersion": "3.8.2",
+              "upstreamQuarkusCoreVersion": null
+            }
+          ],
+          "lts": false
+        },
+        {
+          "id": "3.2",
+          "name": null,
+          "releases": [
+            {
+              "version": "3.2.10.Final",
+              "memberBoms": [
+                {
+                  "groupId": "io.quarkus.platform",
+                  "artifactId": "quarkus-bom",
+                  "classifier": "",
+                  "type": "pom",
+                  "version": "3.2.10.Final",
+                  "key": {
+                    "groupId": "io.quarkus.platform",
+                    "artifactId": "quarkus-bom",
+                    "classifier": "",
+                    "type": "pom"
+                  },
+                  "jar": false
+                },
+                {
+                  "groupId": "io.quarkus.platform",
+                  "artifactId": "quarkus-optaplanner-bom",
+                  "classifier": "",
+                  "type": "pom",
+                  "version": "3.2.10.Final",
+                  "key": {
+                    "groupId": "io.quarkus.platform",
+                    "artifactId": "quarkus-optaplanner-bom",
+                    "classifier": "",
+                    "type": "pom"
+                  },
+                  "jar": false
+                },
+                {
+                  "groupId": "io.quarkus.platform",
+                  "artifactId": "quarkus-qpid-jms-bom",
+                  "classifier": "",
+                  "type": "pom",
+                  "version": "3.2.10.Final",
+                  "key": {
+                    "groupId": "io.quarkus.platform",
+                    "artifactId": "quarkus-qpid-jms-bom",
+                    "classifier": "",
+                    "type": "pom"
+                  },
+                  "jar": false
+                },
+                {
+                  "groupId": "io.quarkus.platform",
+                  "artifactId": "quarkus-cassandra-bom",
+                  "classifier": "",
+                  "type": "pom",
+                  "version": "3.2.10.Final",
+                  "key": {
+                    "groupId": "io.quarkus.platform",
+                    "artifactId": "quarkus-cassandra-bom",
+                    "classifier": "",
+                    "type": "pom"
+                  },
+                  "jar": false
+                },
+                {
+                  "groupId": "io.quarkus.platform",
+                  "artifactId": "quarkus-amazon-services-bom",
+                  "classifier": "",
+                  "type": "pom",
+                  "version": "3.2.10.Final",
+                  "key": {
+                    "groupId": "io.quarkus.platform",
+                    "artifactId": "quarkus-amazon-services-bom",
+                    "classifier": "",
+                    "type": "pom"
+                  },
+                  "jar": false
+                },
+                {
+                  "groupId": "io.quarkus.platform",
+                  "artifactId": "quarkus-cxf-bom",
+                  "classifier": "",
+                  "type": "pom",
+                  "version": "3.2.10.Final",
+                  "key": {
+                    "groupId": "io.quarkus.platform",
+                    "artifactId": "quarkus-cxf-bom",
+                    "classifier": "",
+                    "type": "pom"
+                  },
+                  "jar": false
+                },
+                {
+                  "groupId": "io.quarkus.platform",
+                  "artifactId": "quarkus-camel-bom",
+                  "classifier": "",
+                  "type": "pom",
+                  "version": "3.2.10.Final",
+                  "key": {
+                    "groupId": "io.quarkus.platform",
+                    "artifactId": "quarkus-camel-bom",
+                    "classifier": "",
+                    "type": "pom"
+                  },
+                  "jar": false
+                },
+                {
+                  "groupId": "io.quarkus.platform",
+                  "artifactId": "quarkus-debezium-bom",
+                  "classifier": "",
+                  "type": "pom",
+                  "version": "3.2.10.Final",
+                  "key": {
+                    "groupId": "io.quarkus.platform",
+                    "artifactId": "quarkus-debezium-bom",
+                    "classifier": "",
+                    "type": "pom"
+                  },
+                  "jar": false
+                },
+                {
+                  "groupId": "io.quarkus.platform",
+                  "artifactId": "quarkus-blaze-persistence-bom",
+                  "classifier": "",
+                  "type": "pom",
+                  "version": "3.2.10.Final",
+                  "key": {
+                    "groupId": "io.quarkus.platform",
+                    "artifactId": "quarkus-blaze-persistence-bom",
+                    "classifier": "",
+                    "type": "pom"
+                  },
+                  "jar": false
+                },
+                {
+                  "groupId": "io.quarkus.platform",
+                  "artifactId": "quarkus-google-cloud-services-bom",
+                  "classifier": "",
+                  "type": "pom",
+                  "version": "3.2.10.Final",
+                  "key": {
+                    "groupId": "io.quarkus.platform",
+                    "artifactId": "quarkus-google-cloud-services-bom",
+                    "classifier": "",
+                    "type": "pom"
+                  },
+                  "jar": false
+                },
+                {
+                  "groupId": "io.quarkus.platform",
+                  "artifactId": "quarkus-operator-sdk-bom",
+                  "classifier": "",
+                  "type": "pom",
+                  "version": "3.2.10.Final",
+                  "key": {
+                    "groupId": "io.quarkus.platform",
+                    "artifactId": "quarkus-operator-sdk-bom",
+                    "classifier": "",
+                    "type": "pom"
+                  },
+                  "jar": false
+                }
+              ],
+              "quarkusCoreVersion": "3.2.10.Final",
+              "upstreamQuarkusCoreVersion": null
+            }
+          ],
+          "lts": true
+        }
+      ],
+      "current-stream-id": "3.8"
+    }
+  ],
+  "last-updated": "20240312181213"
+}
