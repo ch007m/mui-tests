@@ -75,6 +75,7 @@ function QuarkusVersion() {
             onOpen={() => setOpen(true)}
             onClose={() => setOpen(false)}
             defaultValue={recommendedVersion}
+            value={null}
             sx={{ width: 300, marginTop: 6, marginX: "auto" }}
             renderInput={(params) => (
                 <TextField
