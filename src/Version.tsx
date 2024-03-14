@@ -11,7 +11,6 @@ export interface Platform {
 
 export interface Version {
     id: string;
-    name: string;
     lts: boolean;
 }
 
@@ -21,9 +20,9 @@ function displayVersions(versions: Version[]){
 }
 
 function QuarkusVersion() {
-    const [_, setOpen] = useState(false);
     const [quarkusVersion, setQuarkusVersion] = useState<Version[]>([]);
-    const [recommendedVersion, setRecommendedVersion] = useState<String | undefined>();
+    const [recommendedQuarkusVersion, setRecommendedQuarkusVersion] = useState<string>();
+    const [defaultQuarkusVersion, setDefaultQuarkusVersion] = useState<Version>();
     const [platform, setPlatform] = useState<Platform[]>([]);
     const [data, setData] = useState(null);
 
@@ -52,17 +51,25 @@ function QuarkusVersion() {
             if (Array.isArray(platform)) {
                 platform.forEach(p => {
                     //console.log("Platform : " + p.name);
-                    console.log("Current version : " + p["current-stream-id"]);
-                    setRecommendedVersion(p["current-stream-id"])
+                    console.log("Recommended version : " + p["current-stream-id"]);
+                    setRecommendedQuarkusVersion(p["current-stream-id"])
                 });
             }
         }
     }, [platform]);
 
     useEffect(() => {
-        if (quarkusVersion) {
+        if (quarkusVersion && recommendedQuarkusVersion) {
             if (Array.isArray(quarkusVersion)) {
                 displayVersions(quarkusVersion);
+                quarkusVersion.forEach((v, idx) => {
+                    if (v.id === recommendedQuarkusVersion) {
+                        console.log("Version matches the recommended: " + v.id + ", " + v.lts)
+                        setDefaultQuarkusVersion(quarkusVersion[idx])
+                    } else {
+                        console.log("No version matching the recommended: " + recommendedQuarkusVersion)
+                    }
+                })
             }
         }
     }, [quarkusVersion]);
@@ -70,12 +77,13 @@ function QuarkusVersion() {
     return (
         <Autocomplete
             id="quarkus-versions"
+            isOptionEqualToValue={(option, value) => option.id === value.id}
             options={quarkusVersion}
             getOptionLabel={(quarkusVersion) => quarkusVersion.id}
-            onOpen={() => setOpen(true)}
-            onClose={() => setOpen(false)}
-            defaultValue={recommendedVersion}
-            value={null}
+            // That don't work using Version array or Version object => defaultValue={defaultQuarkusVersion}
+            // BUT that works using => {{id: "3.8", lts: false}}
+            defaultValue={{id: "3.8", lts: false}}
+            //defaultValue={defaultQuarkusVersion}
             sx={{ width: 300, marginTop: 6, marginX: "auto" }}
             renderInput={(params) => (
                 <TextField
