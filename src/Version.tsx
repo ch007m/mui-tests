@@ -72,6 +72,10 @@ function QuarkusVersion() {
         }
     }, [query]);
 
+    if (!defaultQuarkusVersion) {
+        return <>Waiting to get default quarkus version ...</>;
+    }
+
     return (
         <Autocomplete
             id="quarkus-versions"
