@@ -58,7 +58,7 @@ function QuarkusVersion() {
         quarkusVersion.forEach((v) => {
             console.log("Quarkus version: " + v.id)
             if (v.id === recommendedQuarkusVersion) {
-                setDefaultQuarkusVersion(v)
+                setDefaultQuarkusVersion({id: v.id + " (RECOMMENDED)"})
                 // defaultQuarkusVersion = v
                 console.log("Quarkus version matches the recommended !")
             }
