@@ -13,12 +13,9 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.12",
-    "axios": "^1.6.5",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^18.2.0"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-decorators": "^7.24.0",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
