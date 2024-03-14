@@ -1,6 +1,6 @@
 import './Version.css'
 import {Autocomplete, TextField} from "@mui/material";
-import {useRef, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 
 export interface Platform {
     platformKey: string;
@@ -25,8 +25,8 @@ function QuarkusVersion() {
     //const [_, setDefaultQuarkusVersion] = useState<Version>();
     const [platform, setPlatform] = useState<Platform[]>([]);
     //const [data, setData] = useState(null);
-    const hasPageBeenRendered = useRef(false);
-    const [query, setQuery] = useState('');
+    //const hasPageBeenRendered = useRef(false);
+    //const [query, setQuery] = useState('');
 
     const codeQuarkusUrl = 'https://code.quarkus.io';
     const apiUrl = `${codeQuarkusUrl}/api/platforms`
@@ -44,57 +44,56 @@ function QuarkusVersion() {
     }
 
     useEffect(() => {
-        if (hasPageBeenRendered.current) {
-            console.log("hasPageBeenRendered: true");
-        } else {
-            console.log("hasPageBeenRendered: false");
-            fetchData()
-            if (platform.length > 0) {
-                //setQuarkusVersion(platform[0].streams)
-                platform.forEach(p => {
-                    //console.log("Platform : " + p.name);
-                    console.log("Recommended version is: " + p["current-stream-id"]);
-                    recommendedQuarkusVersion = p["current-stream-id"];
-                });
-            }
+        fetchData()
 
-            if (quarkusVersion.length > 0 && recommendedQuarkusVersion) {
-                displayVersions(quarkusVersion);
-                quarkusVersion.forEach((v) => {
-                    if (v.id === recommendedQuarkusVersion) {
-                        // setDefaultQuarkusVersion(quarkusVersion[idx])
-                        defaultQuarkusVersion = v
-                        console.log("Quarkus version matches the recommended !")
-                    }
-                })
-            }
-            hasPageBeenRendered.current = true;
+        if (platform.length > 0) {
+            //setQuarkusVersion(platform[0].streams)
+            platform.forEach(p => {
+                //console.log("Platform : " + p.name);
+                console.log("Recommended version is: " + p["current-stream-id"]);
+                recommendedQuarkusVersion = p["current-stream-id"];
+            });
         }
-    }, [query]);
 
-    return (
-        <Autocomplete
-            id="quarkus-versions"
-            isOptionEqualToValue={(option, value) => option.id === value.id}
-            options={quarkusVersion}
-            getOptionLabel={(quarkusVersion) => quarkusVersion.id}
-            // That don't work using a state object: Version[] or Version => defaultValue={defaultQuarkusVersion}
-            // Same remark if we use a variable: let defaultQuarkusVersion: Version;
-            // BUT that works using => {{id: "3.8", lts: false}}
-            //defaultValue={{id: "3.8", lts: false}}
+        if (quarkusVersion.length > 0 && recommendedQuarkusVersion) {
+            displayVersions(quarkusVersion);
+            quarkusVersion.forEach((v) => {
+                if (v.id === recommendedQuarkusVersion) {
+                    // setDefaultQuarkusVersion(quarkusVersion[idx])
+                    defaultQuarkusVersion = v
+                    console.log("Quarkus version matches the recommended !")
+                }
+            })
+        }
+    }, []);
 
-            //defaultValue={{ ...defaultQuarkusVersion }}
-            defaultValue={defaultQuarkusVersion}
+    if (platform.length > 0) {
+        return (
+            <Autocomplete
+                id="quarkus-versions"
+                isOptionEqualToValue={(option, value) => option.id === value.id}
+                options={quarkusVersion}
+                getOptionLabel={(quarkusVersion) => quarkusVersion.id}
+                // That don't work using a state object: Version[] or Version => defaultValue={defaultQuarkusVersion}
+                // Same remark if we use a variable: let defaultQuarkusVersion: Version;
+                // BUT that works using => {{id: "3.8", lts: false}}
+                //defaultValue={{id: "3.8", lts: false}}
 
-            sx={{width: 300, marginTop: 6, marginX: "auto"}}
-            renderInput={(params) => (
-                <TextField
-                    {...params}
-                    label="Select a quarkus version"
-                    size="small"
-                />
-            )}
-        />)
+                //defaultValue={{ ...defaultQuarkusVersion }}
+                defaultValue={defaultQuarkusVersion}
+
+                sx={{width: 300, marginTop: 6, marginX: "auto"}}
+                renderInput={(params) => (
+                    <TextField
+                        {...params}
+                        label="Select a quarkus version"
+                        size="small"
+                    />
+                )}
+            />)
+    } else {
+        return <>Still loading...</>;
+    }
 }
 
 export default QuarkusVersion;
