@@ -72,12 +72,6 @@ function QuarkusVersion() {
                 isOptionEqualToValue={(option, value) => option.id === value.id}
                 options={quarkusVersion}
                 getOptionLabel={(quarkusVersion) => quarkusVersion.id}
-                // That don't work using a state object: Version[] or Version => defaultValue={defaultQuarkusVersion}
-                // Same remark if we use a variable: let defaultQuarkusVersion: Version;
-                // BUT that works using => {{id: "3.8", lts: false}}
-                //defaultValue={{id: "3.8", lts: false}}
-
-                //defaultValue={{ ...defaultQuarkusVersion }}
                 defaultValue={defaultQuarkusVersion}
 
                 sx={{width: 300, marginTop: 6, marginX: "auto"}}
