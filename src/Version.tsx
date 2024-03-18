@@ -1,6 +1,9 @@
 import './quarkus.css'
-import {Autocomplete, TextField} from "@mui/material";
+import {Autocomplete} from "@material-ui/lab";
+import {TextField} from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 import {useEffect, useState} from "react";
+import classes from "*.module.css";
 
 
 /* Example returned by code.quarkus.io/api/streams
@@ -51,7 +54,6 @@ function userLabel(v: Version) {
     }
 }
 
-
 function QuarkusVersion() {
     const [quarkusVersion, setQuarkusVersion] = useState<Version[]>([]);
     const [defaultQuarkusVersion, setDefaultQuarkusVersion] = useState<Version>();
@@ -80,7 +82,8 @@ function QuarkusVersion() {
                     quarkusCoreVersion: v.quarkusCoreVersion,
                     lts: v.lts,
                     recommended: v.recommended,
-                    javaCompatibility: v.javaCompatibility
+                    javaCompatibility: v.javaCompatibility,
+                    status: v.status
                 })
             }
         });
@@ -89,19 +92,17 @@ function QuarkusVersion() {
     if (defaultQuarkusVersion) {
         return (
             <div><Autocomplete
-
                 id="quarkus-versions"
-                isOptionEqualToValue={(option, value) => option.key === value.key}
+                getOptionSelected={(option, value) => option.key === value.key}
                 options={quarkusVersion}
                 getOptionLabel={(quarkusVersion) => userLabel(quarkusVersion)}
                 defaultValue={defaultQuarkusVersion}
                 onChange={(event, v) => console.log("Value selected: " + v.key)}
-                sx={{width: 300, marginTop: 6, marginX: "auto"}}
                 renderInput={(params) => (
                     <TextField
                         {...params}
                         label="Select a quarkus version"
-                        size="small"
+                        size="medium"
                     />
                 )}
             />
