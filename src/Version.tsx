@@ -76,15 +76,7 @@ function QuarkusVersion() {
         quarkusVersion.forEach(v => {
             if (v.recommended) {
                 console.log("Recommended version is: " + v.recommended);
-                setDefaultQuarkusVersion({
-                    key: v.key,
-                    platformVersion: v.platformVersion,
-                    quarkusCoreVersion: v.quarkusCoreVersion,
-                    lts: v.lts,
-                    recommended: v.recommended,
-                    javaCompatibility: v.javaCompatibility,
-                    status: v.status
-                })
+                setDefaultQuarkusVersion({...v})
             }
         });
     }, [quarkusVersion]);
