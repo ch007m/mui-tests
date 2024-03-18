@@ -1,43 +1,69 @@
-import './Version.css'
+import './quarkus.css'
 import {Autocomplete, TextField} from "@mui/material";
 import {useEffect, useState} from "react";
 
-export interface Platform {
-    platformKey: string;
-    name: string;
-    currentStreamId: string;
-    versions: Version[];
+
+/* Example returned by code.quarkus.io/api/streams
+{
+    "javaCompatibility": {
+      "recommended": 17,
+      "versions": [
+        17,
+        21
+      ]
+    },
+    "key": "io.quarkus.platform:3.8",
+    "lts": false,
+    "platformVersion": "3.8.2",
+    "quarkusCoreVersion": "3.8.2",
+    "recommended": true,
+    "status": "FINAL"
+  }
+ */
+export interface Version {
+    key: string;
+    quarkusCoreVersion: string;
+    platformVersion: string;
+    lts: boolean;
+    recommended: boolean
+    javaCompatibility: javaCompatibility[]
+    status: string;
 }
 
-export interface Version {
-    id: string;
-    lts: boolean;
+export interface javaCompatibility {
+    recommended: boolean
+    versions: string[]
 }
 
 
 function displayVersions(versions: Version[]) {
-    versions.forEach(v => console.log("Quarkus: " + v.id + ", lts: " + v.lts));
+    versions.forEach(v => console.log("Platform version: " + v.platformVersion, ", Quarkus version: " + v.quarkusCoreVersion + ", lts: " + v.lts + ", recommended: " + v.recommended));
 }
 
-function QuarkusVersion() {
-    const [platform, setPlatform] = useState<Platform[]>([]);
-    const [quarkusVersion, setQuarkusVersion] = useState<Version[]>([]);
+function userLabel(v: Version) {
+    const key = v.key.split(":")
+    if (v.recommended) {
+        return `${key[1]} (RECOMMENDED)`;
+    } else if (v.status != "FINAL") {
+        return `${key[1]} (${v.status})`;
+    } else {
+        return key[1];
+    }
+}
 
-    const [recommendedQuarkusVersion, setRecommendedQuarkusVersion] = useState<string>();
+
+function QuarkusVersion() {
+    const [quarkusVersion, setQuarkusVersion] = useState<Version[]>([]);
     const [defaultQuarkusVersion, setDefaultQuarkusVersion] = useState<Version>();
 
-    // const hasPageBeenRendered = useRef(false);
-    // const [query, setQuery] = useState('');
-
     const codeQuarkusUrl = 'https://code.quarkus.io';
-    const apiUrl = `${codeQuarkusUrl}/api/platforms`
+    const apiStreamsUrl = `${codeQuarkusUrl}/api/streams`
 
     const fetchData = async () => {
-        const response = await fetch(apiUrl);
+        const response = await fetch(apiStreamsUrl);
         const newData = await response.json();
-        setPlatform(newData.platforms)
-        setQuarkusVersion(newData.platforms[0].streams)
-        console.log("Got data")
+        setQuarkusVersion(newData)
+        displayVersions(newData)
     }
 
     useEffect(() => {
@@ -45,35 +71,31 @@ function QuarkusVersion() {
     }, []);
 
     useEffect(() => {
-        platform.forEach(p => {
-            //console.log("Platform : " + p.name);
-            console.log("Recommended version is: " + p["current-stream-id"]);
-            setRecommendedQuarkusVersion(p["current-stream-id"]);
-        });
-    }, [platform]);
-
-    useEffect(() => {
-        //displayVersions(quarkusVersion);
-        console.log("Try to match the recommended version: " + recommendedQuarkusVersion);
-        quarkusVersion.forEach((v) => {
-            console.log("Quarkus version: " + v.id)
-            if (v.id === recommendedQuarkusVersion) {
-                setDefaultQuarkusVersion({id: v.id + " (RECOMMENDED)"})
-                // defaultQuarkusVersion = v
-                console.log("Quarkus version matches the recommended !")
+        quarkusVersion.forEach(v => {
+            if (v.recommended) {
+                console.log("Recommended version is: " + v.recommended);
+                setDefaultQuarkusVersion({
+                    key: v.key,
+                    platformVersion: v.platformVersion,
+                    quarkusCoreVersion: v.quarkusCoreVersion,
+                    lts: v.lts,
+                    recommended: v.recommended,
+                    javaCompatibility: v.javaCompatibility
+                })
             }
-        })
-    }, [recommendedQuarkusVersion]);
+        });
+    }, [quarkusVersion]);
 
     if (defaultQuarkusVersion) {
         return (
-            <Autocomplete
-                id="quarkus-versions"
-                isOptionEqualToValue={(option, value) => option.id === value.id}
-                options={quarkusVersion}
-                getOptionLabel={(quarkusVersion) => quarkusVersion.id}
-                defaultValue={defaultQuarkusVersion}
+            <div><Autocomplete
 
+                id="quarkus-versions"
+                isOptionEqualToValue={(option, value) => option.key === value.key}
+                options={quarkusVersion}
+                getOptionLabel={(quarkusVersion) => userLabel(quarkusVersion)}
+                defaultValue={defaultQuarkusVersion}
+                onChange={(event, v) => console.log("Value selected: " + v.key)}
                 sx={{width: 300, marginTop: 6, marginX: "auto"}}
                 renderInput={(params) => (
                     <TextField
@@ -82,7 +104,8 @@ function QuarkusVersion() {
                         size="small"
                     />
                 )}
-            />)
+            />
+            </div>)
     } else {
         return (<div>Waiting to get the default Quarkus version ...</div>)
     }
