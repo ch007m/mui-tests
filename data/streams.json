@@ -1,0 +1,48 @@
+[
+  {
+    "key": "io.quarkus.platform:3.8",
+    "quarkusCoreVersion": "3.8.2",
+    "javaCompatibility": {
+      "versions": [
+        17,
+        21
+      ],
+      "recommended": 17
+    },
+    "platformVersion": "3.8.2",
+    "recommended": true,
+    "status": "FINAL",
+    "lts": true
+  },
+  {
+    "key": "io.quarkus.platform:3.2",
+    "quarkusCoreVersion": "3.2.11.Final",
+    "javaCompatibility": {
+      "versions": [
+        11,
+        17,
+        21
+      ],
+      "recommended": 17
+    },
+    "platformVersion": "3.2.11.Final",
+    "recommended": false,
+    "status": "FINAL",
+    "lts": true
+  },
+  {
+    "key": "io.quarkus.platform:3.9",
+    "quarkusCoreVersion": "3.9.0.CR2",
+    "javaCompatibility": {
+      "versions": [
+        17,
+        21
+      ],
+      "recommended": 17
+    },
+    "platformVersion": "3.9.0.CR2",
+    "recommended": false,
+    "status": "CR2",
+    "lts": false
+  }
+]
